@@ -4,16 +4,16 @@
   "version": "1.0",
   "description": "Replace Twitter logo with the OG logo. We love the blue bird!",
   "icons": {
-    "16": "icon.png",
-    "48": "icon.png",
-    "128": "icon.png"
+    "16": "images/icon.png",
+    "48": "images/icon.png",
+    "128": "images/icon.png"
   },
   "web_accessible_resources": [
     {
       "resources": [
-        "icon.png",
-        "icon.svg",
-        "icon.ico"
+        "images/icon.png",
+        "images/icon.svg",
+        "images/icon.ico"
       ],
       "matches": [
         "https://twitter.com/*"

@@ -12,9 +12,9 @@
 
     // Avoid extension context invalidated error (see https://stackoverflow.com/questions/53939205/how-to-avoid-extension-context-invalidated-errors-when-messaging-after-an-exte#:~:text=Problems%20can%20arise%20if%20either,changes%20done%20more%20than%20once.)
     if (chrome.runtime?.id) {
-      svg_url = chrome.runtime.getURL("icon.svg"); // SVG file contains all HTML to draw out SVG icon, neat
-      png_url = chrome.runtime.getURL("icon.png");
-      ico_url = chrome.runtime.getURL("icon.ico");
+      svg_url = chrome.runtime.getURL("images/icon.svg"); // SVG file contains all HTML to draw out SVG icon, neat
+      png_url = chrome.runtime.getURL("images/icon.png");
+      ico_url = chrome.runtime.getURL("images/icon.ico");
     }
 
     if (logo_container) {

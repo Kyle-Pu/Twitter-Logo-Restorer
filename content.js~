@@ -1,0 +1,26 @@
+// content.js
+(function () {
+  const replaceTwitterLogo = () => {
+    const logo = document.querySelector(
+      'a[data-testid="AppTabBar_Logo_Link"] svg'
+    );
+
+    if (logo) {
+      logo.style.backgroundImage = `url(${chrome.extension.getURL("icon.png")})`;
+      logo.style.width = "32px";
+      logo.style.height = "32px";
+      logo.style.backgroundSize = "cover";
+    }
+  };
+
+  replaceTwitterLogo();
+
+  // Listen for page changes and update the logo on new tweets or navigation
+  const observer = new MutationObserver(replaceTwitterLogo);
+  observer.observe(document.body, {
+    childList: true,
+    subtree: true,
+    attributes: false,
+    characterData: false,
+  });
+})();

@@ -1,8 +1,8 @@
 {
   "manifest_version": 3,
-  "name": "Twitter Logo Restorer",
+  "name": "Bring Back Blissful Blue Bird",
   "version": "1.0",
-  "description": "Replace Twitter logo with the OG logo. We love the blue bird!",
+  "description": "Restore Twitter's logo - we love the blue bird!",
   "icons": {
     "16": "images/icon.png",
     "48": "images/icon.png",

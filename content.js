@@ -8,20 +8,22 @@
 
     var svg_url = "";
     var png_url = "";
+    var ico_url = "";
 
     // Avoid extension context invalidated error (see https://stackoverflow.com/questions/53939205/how-to-avoid-extension-context-invalidated-errors-when-messaging-after-an-exte#:~:text=Problems%20can%20arise%20if%20either,changes%20done%20more%20than%20once.)
     if (chrome.runtime?.id) {
       svg_url = chrome.runtime.getURL("icon.svg"); // SVG file contains all HTML to draw out SVG icon, neat
-    }
-
-    if (chrome.runtime?.id) {
       png_url = chrome.runtime.getURL("icon.png");
+      ico_url = chrome.runtime.getURL("icon.ico");
     }
 
     if (logo_container) {
-      logo_container.style.width = "32px";
-      logo_container.style.height = "32px";
-      logo_container.style.backgroundSize = "cover";
+      // Disconnect the observer temporarily to avoid infinite loop
+      observer.disconnect();
+
+      logo_container.style.width = "38px";
+      logo_container.style.height = "38px";
+      logo_container.style.paddingLeft = "10px";
 
       // Fetch and read the content of blue bird logo file
       fetch(svg_url)
@@ -32,16 +34,31 @@
         });
     }
 
+    // Restore the favicon too
+    var link = document.querySelector("link[rel~='icon']");
+    if (!link) {
+      link = document.createElement('link');
+      link.rel = 'icon';
+      document.head.appendChild(link);
+    }
+    link.href = ico_url;
+
   };
 
-  replaceTwitterLogo();
+  const observeDOMChanges = () => {
+    // Observe the DOM changes and call replaceTwitterLogo when needed
+    observer.observe(document.body, {
+      childList: true,
+      subtree: true,
+      attributes: false,
+      characterData: false,
+    });
+  };
 
   // Listen for page changes and update the logo on new tweets or navigation
   const observer = new MutationObserver(replaceTwitterLogo);
-  observer.observe(document.body, {
-    childList: true,
-    subtree: true,
-    attributes: false,
-    characterData: false,
-  });
+
+  // Start observing the DOM changes
+  observeDOMChanges();
+
 })();

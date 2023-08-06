@@ -12,7 +12,8 @@
     {
       "resources": [
         "icon.png",
-        "icon.svg"
+        "icon.svg",
+        "icon.ico"
       ],
       "matches": [
         "https://twitter.com/*"
